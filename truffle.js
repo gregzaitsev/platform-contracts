@@ -36,6 +36,24 @@ const forkedLiveNetworkDeploymentConfigOverride = {
     GAS_STIPEND_SERVICE: "0x29c57b5F27b249Ab3c11Badf6efc4B2308bc75Dd",
   },
 };
+// rinkeby override
+const rinkebyNetworkDeploymentConfigOverride = {
+  // give 5 minutes for deployment - Commitment deployment will fail if less than 24h from beginning
+  START_DATE: now + 1 * 24 * 60 * 60 + 5 * 60,
+  // setup mocked artifacts
+  artifacts: {
+    ICBM_COMMITMENT: "MockICBMCommitment",
+    STANDARD_ETO_COMMITMENT: "MockETOCommitment",
+  },
+  // other addresses set to DEPLOYER
+  addresses: {
+    EURT_DEPOSIT_MANAGER: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
+    IDENTITY_MANAGER: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
+    GAS_EXCHANGE: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
+    TOKEN_RATE_ORACLE: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
+    GAS_STIPEND_SERVICE: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
+  },
+};
 
 const nanoProvider = (providerUrl, nanoPath, network) =>
   process.argv.some(arg => arg === network)
@@ -52,6 +70,15 @@ module.exports = {
       gasPrice: 21000000000,
       from: "0x8a194c13308326173423119f8dcb785ce14c732b",
       deploymentConfigOverride: devNetworkDeploymentConfigOverride,
+    },
+    rinkeby: {
+      network_id: 4,
+      host: "localhost",
+      port: 8545,
+      gas: 6000000, // close to current mainnet limit
+      gasPrice: 5000000000,
+      from: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
+      deploymentConfigOverride: rinkebyNetworkDeploymentConfigOverride,
     },
     inprocess: {
       network_id: "*",

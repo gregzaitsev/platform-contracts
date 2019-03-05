@@ -56,28 +56,28 @@ module.exports = function deployContracts(deployer, network, accounts) {
         object: simpleExchange.address,
       },
     ]);
-    console.log("send ether to services transacting on Ethereum");
-    const transactingServices = [
-      CONFIG.addresses.EURT_DEPOSIT_MANAGER,
-      CONFIG.addresses.IDENTITY_MANAGER,
-      CONFIG.addresses.GAS_EXCHANGE,
-      CONFIG.addresses.TOKEN_RATE_ORACLE,
-      CONFIG.addresses.GAS_STIPEND_SERVICE,
-    ];
-    const serviceInitialBalance = CONFIG.Q18.mul(CONFIG.isLiveDeployment ? 0.5 : 100);
-    for (const service of transactingServices) {
-      const serviceBalance = await promisify(web3.eth.getBalance)(service);
-      if (serviceBalance.lt(serviceInitialBalance)) {
-        const missingBalance = serviceInitialBalance.sub(serviceBalance);
-        console.log(`Sending ${missingBalance.toNumber()} to ${service}`);
-        await promisify(web3.eth.sendTransaction)({
-          from: DEPLOYER,
-          to: service,
-          value: missingBalance,
-        });
-      } else {
-        console.log(`Service ${service} has ${serviceBalance.toNumber()} already`);
-      }
-    }
+    console.log("skip -- send ether to services transacting on Ethereum");
+    //const transactingServices = [
+    //  CONFIG.addresses.EURT_DEPOSIT_MANAGER,
+    //  CONFIG.addresses.IDENTITY_MANAGER,
+    //  CONFIG.addresses.GAS_EXCHANGE,
+    //  CONFIG.addresses.TOKEN_RATE_ORACLE,
+    //  CONFIG.addresses.GAS_STIPEND_SERVICE,
+    //];
+    //const serviceInitialBalance = CONFIG.Q18.mul(CONFIG.isLiveDeployment ? 0.5 : 100);
+    //for (const service of transactingServices) {
+    //  const serviceBalance = await promisify(web3.eth.getBalance)(service);
+    //  if (serviceBalance.lt(serviceInitialBalance)) {
+    //    const missingBalance = serviceInitialBalance.sub(serviceBalance);
+    //    console.log(`Sending ${missingBalance.toNumber()} to ${service}`);
+    //    await promisify(web3.eth.sendTransaction)({
+    //      from: DEPLOYER,
+    //      to: service,
+    //      value: missingBalance,
+    //    });
+    //  } else {
+    //    console.log(`Service ${service} has ${serviceBalance.toNumber()} already`);
+    //  }
+    //}
   });
 };

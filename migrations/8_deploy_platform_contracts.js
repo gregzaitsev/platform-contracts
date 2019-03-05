@@ -36,6 +36,11 @@ module.exports = function deployContracts(deployer, network, accounts) {
     }
     // must have ether to deploy and initialize services
     const DEPLOYER = getDeployerAccount(network, accounts);
+
+    const netId = web3.version.network;
+    console.log("=== Network ID: ", netId);
+
+
     console.log("checking if DEPLOYER has enough ETH");
     const deployerBalance = await promisify(web3.eth.getBalance)(DEPLOYER);
     if (deployerBalance.lt(CONFIG.Q18.mul(5))) {
