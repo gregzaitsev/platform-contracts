@@ -1,0 +1,49 @@
+'use strict';
+
+const config = require("./config");
+const fs = require('fs');
+const outputFile = config.ETODefinitionFile;
+
+let etoDefinition = {
+  etoTerms: {
+    EXISTING_COMPANY_SHARES: "40859",
+    MIN_TICKET_EUR_ULPS: "1000000000000000000",
+    MAX_TICKET_EUR_ULPS: "8443672140776818757074944",
+    ALLOW_RETAIL_INVESTORS: false,
+    ENABLE_TRANSFERS_ON_SUCCESS: false,
+    EQUITY_TOKEN_NAME: "FORCE",
+    EQUITY_TOKEN_SYMBOL: "FTH",
+    SHARE_NOMINAL_VALUE_EUR_ULPS: "1000000000000000000",
+    WHITELIST_DISCOUNT_FRAC: "400000000000000000",
+    PUBLIC_DISCOUNT_FRAC: "400000000000000000",
+    INVESTOR_OFFERING_DOCUMENT_URL: "ipfs:QmaKLCs63roGs2ecg5wv9umtb832RMwRQbVoqwMbGEXPT8"
+  },
+  shareholderTerms: {
+    GENERAL_VOTING_RULE: "1",
+    TAG_ALONG_VOTING_RULE: "2",
+    LIQUIDATION_PREFERENCE_MULTIPLIER_FRAC: "0",
+    HAS_FOUNDERS_VESTING: true,
+    GENERAL_VOTING_DURATION: "864000",
+    RESTRICTED_ACT_VOTING_DURATION: "1209600",
+    VOTING_FINALIZATION_DURATION: "604800",
+    TOKENHOLDERS_QUORUM_FRAC: "500000000000000000",
+    VOTING_MAJORITY_FRAC: "500000000000000000",
+    INVESTMENT_AGREEMENT_TEMPLATE_URL: "ipfs:QmaGGjSbjUng7f1JRusAG75DRnpqJeS9y2zFpowW4Zh3Rn"
+  },
+  durTerms: {
+    WHITELIST_DURATION: "1",
+    PUBLIC_DURATION: `${config.PublicInvestmentDurationSeconds}`,
+    SIGNING_DURATION: `${config.SigningDurationSeconds}`,
+    CLAIM_DURATION: `${config.ClaimDurationSeconds}`
+  },
+  tokenTerms: {
+    MIN_NUMBER_OF_TOKENS: "10000000",
+    MAX_NUMBER_OF_TOKENS: "46000000",
+    TOKEN_PRICE_EUR_ULPS: "305930150028145600",
+    MAX_NUMBER_OF_TOKENS_IN_WHITELIST: "7000000"
+  },
+  nominee: `${config.Deployer}`,
+  company: `${config.Deployer}`
+}
+
+fs.writeFileSync(outputFile, JSON.stringify(etoDefinition), 'ascii');

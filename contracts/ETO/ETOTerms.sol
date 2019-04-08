@@ -35,7 +35,7 @@ contract ETOTerms is
     ////////////////////////
 
     bytes32 private constant EMPTY_STRING_HASH = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
-    uint256 public constant MIN_QUALIFIED_INVESTOR_TICKET_EUR_ULPS = 100000 * 10**18;
+    uint256 public constant MIN_QUALIFIED_INVESTOR_TICKET_EUR_ULPS = 1 * 10**18; //100000 * 10**18;
 
     ////////////////////////
     // Immutable state

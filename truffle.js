@@ -75,8 +75,8 @@ module.exports = {
       network_id: 4,
       host: "localhost",
       port: 8545,
-      gas: 6000000, // close to current mainnet limit
-      gasPrice: 5000000000,
+      gas: 6700000, // close to current mainnet limit
+      gasPrice: 20000000000,
       from: "0x09660dbfb4dcedfa097c1caba8b6c492c374d314",
       deploymentConfigOverride: rinkebyNetworkDeploymentConfigOverride,
     },

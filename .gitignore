@@ -51,3 +51,9 @@ coverageEnv
 coverage.json
 platform-contracts-artifacts
 etos
+
+# Automatic ETO deployment
+scripts/autoETO/account1.txt
+scripts/autoETO/password.txt
+scripts/autoETO/eto_definition.json
+scripts/autoETO/*.log
