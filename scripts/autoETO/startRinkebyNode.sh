@@ -1,4 +1,5 @@
 # Set the deployer address here:
+#DEPLOYER=0x18fb6a7ab24fa7be8f1aac5a221e145cbe60989a
 DEPLOYER=0x09660DbFb4dcEDfA097c1caBa8B6c492C374D314
 
 # Import deployer address
